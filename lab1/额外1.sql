@@ -1,0 +1,5 @@
+use DBU201414803;
+go
+select SPJ.PNO,p.PNAME,J.JNAME
+from SPJ414803.SPJ,SPJ414803.J,SPJ414803.P
+where SPJ.JNO=j.JNO and spj.PNO=p.PNO and JNAME like '%³§';

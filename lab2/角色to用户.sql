@@ -1,0 +1,7 @@
+exec sp_addrolemember 'rolem','manager'
+exec sp_addrolemember 'role1','sales1'
+exec sp_addrolemember 'role1','sales2'
+exec sp_addrolemember 'role1','sales3'
+exec sp_addrolemember 'role2','oper1'
+exec sp_addrolemember 'role2','oper2'
+exec sp_addrolemember 'roleu','user1'
