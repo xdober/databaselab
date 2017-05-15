@@ -1,10 +1,10 @@
-create trigger trg1
-on dbo.phoneMFee
+create trigger trg2
+on dbo.phonePaid
 for insert 
 as 
 begin 
 	declare @num char(12),@date date,@total float,@prebalance float;
-	select @num=pnumber,@date=mdate,@total=mtotal from inserted
+	select @num=pnumber,@date=pdate,@total=paid from inserted
 	if(not exists(
 	select *
 	from phoneFeeHistory
@@ -16,5 +16,5 @@ begin
 		) )
 	end  
 	insert into phoneFeeHistory
-	values(@num, @date, @total, 0, @prebalance-@total)
+	values(@num, @date, @total, 1, @prebalance+@total)
 end

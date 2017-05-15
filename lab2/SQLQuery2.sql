@@ -1,1 +1,3 @@
-create user dba for login dba with default_schema = dbo
+execute as user='manager'
+select *
+from BHall

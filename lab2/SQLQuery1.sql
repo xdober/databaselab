@@ -1,1 +1,2 @@
-create login dba with password='123456',default_database=MCPI
+revoke select
+on BHall from rolem cascade
