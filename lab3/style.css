@@ -19,3 +19,7 @@ div input, div select, div button, div select option{
   padding-bottom: 1px;
   padding-top: 1px;
 }
+.center-block {
+  margin-top: 60px;
+  float: none;
+}

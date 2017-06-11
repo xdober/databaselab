@@ -1,21 +1,38 @@
-var db = openDatabase('testDB', '1.0', 'Test DB', 32 * 1024 * 1024), tmp, emp=[];
-var branchInfo, input=[], rows=[];
-for(var i=0; i<5; i++){
-  emp[i]="emp"+i;
-  document.getElementById(emp[i]).onclick=function(){operation(this.id)};
-}
-
-$('button').addClass("btn btn-success")
-var Bnos=[]
-function operation(oper) {
-  switch (oper) {
-    case "emp0": getInfo(); break;
-    case "emp1": delOper(); break;
-    case "emp2": addOper(); break;
-    case "emp3": getAllBnos(); break;
-    case "emp4": goback(); break;
-    default: ;
+const loginState = sessionStorage.getItem('state');
+$('.true-body').hide();
+$('#success-alert').hide();
+if (!loginState) {
+  showAlert()
+} else {
+  $('.true-body').show();
+  var db = openDatabase('testDB', '1.0', 'Test DB', 32 * 1024 * 1024), tmp, emp=[];
+  var branchInfo, input=[], rows=[];
+  for(var i=0; i<5; i++){
+    emp[i]="emp"+i;
+    document.getElementById(emp[i]).onclick=function(){operation(this.id)};
   }
+
+  $('button').addClass("btn btn-success")
+  var Bnos=[]
+  function operation(oper) {
+    switch (oper) {
+      case "emp0": getInfo(); break;
+      case "emp1": delOper(); break;
+      case "emp2": addOper(); break;
+      case "emp3": getAllBnos(); break;
+      case "emp4": goback(); break;
+      default: ;
+    }
+  }
+}
+function showAlert() {
+    $('#success-alert').slideDown(500, function(){
+      $('#success-alert').fadeTo(2500, 500).slideUp(500, function(){
+        $('#success-alert').alert('close');
+        window.location="index.html"
+      });
+    });
+
 }
 //更新操作
 function getAllBnos(){

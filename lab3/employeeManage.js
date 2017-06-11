@@ -1,16 +1,33 @@
-var db = openDatabase('testDB', '1.0', 'Test DB', 32 * 1024 * 1024), tmp;
-var emp=[]
-for(var i=0;i<5;i++){
-  var aim="area"+i;
-  document.getElementById(aim).style.visibility="hidden"
-}
+const loginState = sessionStorage.getItem('state');
+$('.true-body').hide();
+$('#success-alert').hide();
+if (!loginState) {
+  showAlert()
+} else {
+  $('.true-body').show();
+  var db = openDatabase('testDB', '1.0', 'Test DB', 32 * 1024 * 1024), tmp;
+  var emp=[]
+  for(var i=0;i<5;i++){
+    var aim="area"+i;
+    document.getElementById(aim).style.visibility="hidden"
+  }
 
-$('button').addClass("btn btn-success")
-var place=["工号","姓名","性别","年龄","工种","电话","地址"]
-var Bnames=[], input=[]
-for(var i=0; i<5; i++){
-  emp[i]="emp"+i;
-  document.getElementById(emp[i]).onclick=function(){operation(this.id)};
+  $('button').addClass("btn btn-success")
+  var place=["工号","姓名","性别","年龄","工种","电话","地址"]
+  var Bnames=[], input=[]
+  for(var i=0; i<5; i++){
+    emp[i]="emp"+i;
+    document.getElementById(emp[i]).onclick=function(){operation(this.id)};
+  }
+}
+function showAlert() {
+    $('#success-alert').slideDown(500, function(){
+      $('#success-alert').fadeTo(2500, 500).slideUp(500, function(){
+        $('#success-alert').alert('close');
+        window.location="index.html"
+      });
+    });
+
 }
 function operation(oper) {
   switch (oper) {

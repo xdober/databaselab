@@ -11,6 +11,7 @@ function login(){
          if(tmp.rows.length==0){
            alert("用户名错误！")
          } else if(password==tmp.rows.item(0).psword){
+           sessionStorage.setItem('state',true)
            window.location="admin.html";
          } else{
            alert("密码错误！");

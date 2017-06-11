@@ -1,18 +1,33 @@
-var db = openDatabase('testDB', '1.0', 'Test DB', 32 * 1024 * 1024),
-  tmp, losttmp, overtmp, emp=[], slyRow=[], lostm=[], overm=[],
-  empdex=0;
-  var Enum, j=1
-  var tmpeno,
-      tmpename,
-      tmpsalary
+const loginState = sessionStorage.getItem('state');
+$('.true-body').hide();
+$('#success-alert').hide();
+if (!loginState) {
+  showAlert()
+} else {
+  $('.true-body').show();
+  var db = openDatabase('testDB', '1.0', 'Test DB', 32 * 1024 * 1024),
+    tmp, losttmp, overtmp, emp=[], slyRow=[], lostm=[], overm=[],
+    empdex=0;
+    var Enum, j=1
+    var tmpeno,
+        tmpename,
+        tmpsalary
 
+  for(var i=0; i<3; i++){
+    emp[i]="emp"+i;
+    document.getElementById(emp[i]).onclick=function(){operation(this.id)};
+  }
 
-for(var i=0; i<3; i++){
-  emp[i]="emp"+i;
-  document.getElementById(emp[i]).onclick=function(){operation(this.id)};
+  $('button').addClass("btn btn-success")
 }
-
-$('button').addClass("btn btn-success")
+function showAlert() {
+    $('#success-alert').slideDown(500, function(){
+      $('#success-alert').fadeTo(2500, 500).slideUp(500, function(){
+        $('#success-alert').alert('close');
+        window.location="index.html"
+      });
+    });
+}
 function operation(oper) {
   switch (oper) {
     case "emp0": viewsalary(); break;

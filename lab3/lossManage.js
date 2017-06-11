@@ -1,11 +1,28 @@
-var db = openDatabase('testDB', '1.0', 'Test DB', 32 * 1024 * 1024), tmp, emp=[];
-for(var i=0; i<5; i++){
-  emp[i]="emp"+i;
-  document.getElementById(emp[i]).onclick=function(){operation(this.id)};
-}
+const loginState = sessionStorage.getItem('state');
+$('.true-body').hide();
+$('#success-alert').hide();
+if (!loginState) {
+  showAlert()
+} else {
+  $('.true-body').show();
+  var db = openDatabase('testDB', '1.0', 'Test DB', 32 * 1024 * 1024), tmp, emp=[];
+  for(var i=0; i<5; i++){
+    emp[i]="emp"+i;
+    document.getElementById(emp[i]).onclick=function(){operation(this.id)};
+  }
 
-$('button').addClass("btn btn-success")
-var Enos=[],Enames=[],Lmons=[],place=["工号","月份","缺勤天数"]
+  $('button').addClass("btn btn-success")
+  var Enos=[],Enames=[],Lmons=[],place=["工号","月份","缺勤天数"]
+}
+function showAlert() {
+    $('#success-alert').slideDown(500, function(){
+      $('#success-alert').fadeTo(2500, 500).slideUp(500, function(){
+        $('#success-alert').alert('close');
+        window.location="index.html"
+      });
+    });
+
+}
 function operation(oper) {
   switch (oper) {
     case "emp0": showInfo(); break;
